@@ -138,7 +138,8 @@ public class SpotifyAPIController {
                     .getArtist(artistId)
                     .build();
 
-            return getArtistRequest.execute();
+            Artist artist = getArtistRequest.execute();
+            if (artist != null) return artist;
         } catch (IOException | ParseException | SpotifyWebApiException e) {
             e.printStackTrace();
             System.out.println("Could not get artist: " + artistId);
