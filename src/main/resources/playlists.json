@@ -2,6 +2,7 @@
   "playlists": [
     {
       "id": "2nWxf8L4l3CpCpfIGT9fD2",
+      "playlistType": "MULTI_ARTIST",
       "artists": [
         "1rRAJF3FBwQsGx4twrUqiC",
         "6u7q0ZGK0oilVYx4kqIk3E",
@@ -53,6 +54,7 @@
     },
     {
       "id": "6R27zWKVss7cWrWhsnZSF8",
+      "playlistType": "MULTI_ARTIST",
       "artists": [
         "2tPp6Lt1bM1nzGK5jcm7B8",
         "6dgMiwBVN5wBypzQnSYGNx",
@@ -101,6 +103,7 @@
     },
     {
       "id": "1DbVWFAi5R3W3G0CEt8Bzk",
+      "playlistType": "MULTI_ARTIST",
       "artists": [
         "02jCP5QSPYrmuZVMwSJweB",
         "5hBCfYFEDK8otrksMYuzoL",

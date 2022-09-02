@@ -7,6 +7,8 @@ public class Playlist {
 
     String id;
 
+    PlaylistType playlistType;
+
     String[] artists;
 
 }
