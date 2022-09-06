@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 @Component
-public class FestivalPlaylistConstructorController {
+public class MultiArtistPlaylistConstructorController {
 
     SpotifyAPIController spotifyAPIController;
 
@@ -24,7 +24,7 @@ public class FestivalPlaylistConstructorController {
     private Integer tracksPerPlaylist;
 
     @Autowired
-    public FestivalPlaylistConstructorController(SpotifyAPIController spotifyAPIController) {
+    public MultiArtistPlaylistConstructorController(SpotifyAPIController spotifyAPIController) {
         this.spotifyAPIController = spotifyAPIController;
     }
 

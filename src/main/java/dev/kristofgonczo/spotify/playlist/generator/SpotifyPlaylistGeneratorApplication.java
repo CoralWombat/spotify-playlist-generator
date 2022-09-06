@@ -5,11 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
 @Configuration
+@EnableAsync
 @PropertySource(value = "file:application.properties", ignoreResourceNotFound = true)
 @ComponentScan("dev.kristofgonczo.spotify.playlist.generator")
 public class SpotifyPlaylistGeneratorApplication {
