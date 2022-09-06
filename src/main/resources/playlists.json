@@ -1,7 +1,64 @@
 {
   "playlists": [
     {
+      "id": "7q4jRXlB1PHrJ5DCNBGoaG",
+      "playlistType": "SINGLE_ARTIST",
+      "artists": [
+        "1SN71xW3yOVbPgsGFBMXTZ"
+      ]
+    },
+    {
+      "id": "0radeWih8mYU8W6PxPleYw",
+      "playlistType": "SINGLE_ARTIST",
+      "artists": [
+        "2ezYPSKWBfnFTobN9puCow"
+      ]
+    },
+    {
+      "id": "6kKy2EPgQq7a3sekmtxkoE",
+      "playlistType": "SINGLE_ARTIST",
+      "artists": [
+        "1q7g5SBAxtjizS3Vcof6Y6"
+      ]
+    },
+    {
+      "id": "4y9OcNbuuYZ0EPmAri0PQm",
+      "playlistType": "SINGLE_ARTIST",
+      "artists": [
+        "0W2LWS5PPbVl0f6prrMcoP"
+      ]
+    },
+    {
+      "id": "4XYmbkazpSqr0IpATHwNcy",
+      "playlistType": "SINGLE_ARTIST",
+      "artists": [
+        "0IUu1vSCfCZJrLHUOgHNWJ"
+      ]
+    },
+    {
+      "id": "1DPSHUeiEvQmSjYWvjW4Nu",
+      "playlistType": "SINGLE_ARTIST",
+      "artists": [
+        "51BZWZTWqI7GjrgHw3Wvuw"
+      ]
+    },
+    {
+      "id": "3wk1scRkS2Z4iZzs5TbcaH",
+      "playlistType": "SINGLE_ARTIST",
+      "artists": [
+        "5XXDBFhkTp168rjq9IjAE3"
+      ]
+    },
+    {
+      "id": "4eSPgMbwqlUW8c0xys3AUr",
+      "playlistType": "SINGLE_ARTIST",
+      "artists": [
+        "5hBCfYFEDK8otrksMYuzoL"
+      ]
+    },
+    {
       "id": "2nWxf8L4l3CpCpfIGT9fD2",
+      "playlistType": "MULTI_ARTIST",
       "artists": [
         "1rRAJF3FBwQsGx4twrUqiC",
         "6u7q0ZGK0oilVYx4kqIk3E",
@@ -53,6 +110,7 @@
     },
     {
       "id": "6R27zWKVss7cWrWhsnZSF8",
+      "playlistType": "MULTI_ARTIST",
       "artists": [
         "2tPp6Lt1bM1nzGK5jcm7B8",
         "6dgMiwBVN5wBypzQnSYGNx",
@@ -101,6 +159,7 @@
     },
     {
       "id": "1DbVWFAi5R3W3G0CEt8Bzk",
+      "playlistType": "MULTI_ARTIST",
       "artists": [
         "02jCP5QSPYrmuZVMwSJweB",
         "5hBCfYFEDK8otrksMYuzoL",

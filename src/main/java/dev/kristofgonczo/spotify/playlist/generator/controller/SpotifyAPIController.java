@@ -8,16 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.special.SnapshotResult;
-import se.michaelthelin.spotify.model_objects.specification.Artist;
-import se.michaelthelin.spotify.model_objects.specification.Paging;
-import se.michaelthelin.spotify.model_objects.specification.PlaylistTrack;
-import se.michaelthelin.spotify.model_objects.specification.Track;
+import se.michaelthelin.spotify.model_objects.specification.*;
+import se.michaelthelin.spotify.requests.data.albums.GetAlbumsTracksRequest;
 import se.michaelthelin.spotify.requests.data.artists.GetArtistRequest;
+import se.michaelthelin.spotify.requests.data.artists.GetArtistsAlbumsRequest;
 import se.michaelthelin.spotify.requests.data.artists.GetArtistsTopTracksRequest;
 import se.michaelthelin.spotify.requests.data.playlists.AddItemsToPlaylistRequest;
 import se.michaelthelin.spotify.requests.data.playlists.GetPlaylistsItemsRequest;
 import se.michaelthelin.spotify.requests.data.playlists.RemoveItemsFromPlaylistRequest;
 import se.michaelthelin.spotify.requests.data.search.simplified.SearchArtistsRequest;
+import se.michaelthelin.spotify.requests.data.tracks.GetSeveralTracksRequest;
+import se.michaelthelin.spotify.requests.data.tracks.GetTrackRequest;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,6 +36,10 @@ public class SpotifyAPIController {
     }
 
     private static final Integer QUERY_PLAYLIST_ITEMS_LIMIT = 50;
+
+    private static final Integer QUERY_ALBUM_ITEMS_LIMIT = 50;
+
+    private static final Integer QUERY_ARTIST_ALBUMS_LIMIT = 50;
 
     private static final Integer ADD_PLAYLIST_ITEMS_LIMIT = 100;
 
@@ -138,7 +143,8 @@ public class SpotifyAPIController {
                     .getArtist(artistId)
                     .build();
 
-            return getArtistRequest.execute();
+            Artist artist = getArtistRequest.execute();
+            if (artist != null) return artist;
         } catch (IOException | ParseException | SpotifyWebApiException e) {
             e.printStackTrace();
             System.out.println("Could not get artist: " + artistId);
@@ -164,4 +170,87 @@ public class SpotifyAPIController {
         }
         return result;
     }
+
+    public List<AlbumSimplified> getArtistsAlbums(String artistId) {
+        List<AlbumSimplified> result = new ArrayList<>();
+        try {
+            authenticatorController.refreshTokens();
+
+            boolean allRequested = false;
+
+            while (!allRequested) {
+                final GetArtistsAlbumsRequest getArtistsAlbumsRequest =
+                        authenticatorController.getSpotifyApi().getArtistsAlbums(artistId)
+                                .limit(QUERY_ARTIST_ALBUMS_LIMIT)
+                                .offset(result.size())
+                                .market(CountryCode.HU)
+                                .build();
+                Paging<AlbumSimplified> albumSimplified = getArtistsAlbumsRequest.execute();
+
+                result.addAll(Arrays.stream(albumSimplified.getItems()).toList());
+
+                allRequested = result.size() == albumSimplified.getTotal();
+            }
+        } catch (IOException | SpotifyWebApiException | ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public List<TrackSimplified> getAlbumsTracks(String albumId) {
+        List<TrackSimplified> result = new ArrayList<>();
+        try {
+            authenticatorController.refreshTokens();
+
+            boolean allRequested = false;
+
+            while (!allRequested) {
+                final GetAlbumsTracksRequest getAlbumsTracksRequest =
+                        authenticatorController.getSpotifyApi().getAlbumsTracks(albumId)
+                                .limit(QUERY_ALBUM_ITEMS_LIMIT)
+                                .offset(result.size())
+                                .market(CountryCode.HU)
+                                .build();
+                Paging<TrackSimplified> trackSimplifiedPaging = getAlbumsTracksRequest.execute();
+
+                result.addAll(Arrays.stream(trackSimplifiedPaging.getItems()).toList());
+
+                allRequested = result.size() == trackSimplifiedPaging.getTotal();
+            }
+        } catch (IOException | SpotifyWebApiException | ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public Track[] getAllTracksOfArtist(String artistId) {
+        List<Track> result = new ArrayList<>();
+        try {
+            authenticatorController.refreshTokens();
+
+            List<AlbumSimplified> albums = getArtistsAlbums(artistId);
+            for (AlbumSimplified album : albums) {
+                List<TrackSimplified> albumsTracks = getAlbumsTracks(album.getId());
+                for (TrackSimplified trackSimplified : albumsTracks) {
+                    if (Arrays.stream(trackSimplified.getArtists()).anyMatch(artistSimplified -> artistSimplified.getId().equals(artistId))){
+                        result.add(getTrack(trackSimplified.getId()));
+                    }
+                }
+            }
+        } catch (IOException | ParseException | SpotifyWebApiException e) {
+            e.printStackTrace();
+            System.out.println("Could not get top tracks of artist: " + artistId);
+        }
+        return result.toArray(new Track[0]);
+    }
+
+    public Track getTrack(String trackId) throws IOException, ParseException, SpotifyWebApiException {
+        authenticatorController.refreshTokens();
+
+        final GetTrackRequest getTrackRequest = authenticatorController.getSpotifyApi().getTrack(trackId)
+                .market(CountryCode.HU)
+                .build();
+        return getTrackRequest.execute();
+    }
+
 }
