@@ -3,6 +3,7 @@
     {
       "id": "7q4jRXlB1PHrJ5DCNBGoaG",
       "playlistType": "SINGLE_ARTIST",
+      "artistListType": "IDS",
       "artists": [
         "1SN71xW3yOVbPgsGFBMXTZ"
       ]
@@ -10,6 +11,7 @@
     {
       "id": "4XYmbkazpSqr0IpATHwNcy",
       "playlistType": "SINGLE_ARTIST",
+      "artistListType": "IDS",
       "artists": [
         "0IUu1vSCfCZJrLHUOgHNWJ"
       ]
@@ -17,6 +19,7 @@
     {
       "id": "1DPSHUeiEvQmSjYWvjW4Nu",
       "playlistType": "SINGLE_ARTIST",
+      "artistListType": "IDS",
       "artists": [
         "51BZWZTWqI7GjrgHw3Wvuw"
       ]
@@ -24,6 +27,7 @@
     {
       "id": "2nWxf8L4l3CpCpfIGT9fD2",
       "playlistType": "MULTI_ARTIST",
+      "artistListType": "IDS",
       "artists": [
         "1rRAJF3FBwQsGx4twrUqiC",
         "6u7q0ZGK0oilVYx4kqIk3E",
@@ -76,6 +80,7 @@
     {
       "id": "6R27zWKVss7cWrWhsnZSF8",
       "playlistType": "MULTI_ARTIST",
+      "artistListType": "IDS",
       "artists": [
         "2tPp6Lt1bM1nzGK5jcm7B8",
         "6dgMiwBVN5wBypzQnSYGNx",
@@ -125,6 +130,7 @@
     {
       "id": "1DbVWFAi5R3W3G0CEt8Bzk",
       "playlistType": "MULTI_ARTIST",
+      "artistListType": "IDS",
       "artists": [
         "02jCP5QSPYrmuZVMwSJweB",
         "5hBCfYFEDK8otrksMYuzoL",

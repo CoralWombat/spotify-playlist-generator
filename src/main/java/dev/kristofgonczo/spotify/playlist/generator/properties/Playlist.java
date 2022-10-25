@@ -9,6 +9,8 @@ public class Playlist {
 
     PlaylistType playlistType;
 
+    ArtistListType artistListType;
+
     String[] artists;
 
 }

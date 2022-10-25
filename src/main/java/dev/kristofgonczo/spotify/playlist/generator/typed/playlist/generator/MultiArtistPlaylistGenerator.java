@@ -25,7 +25,7 @@ public class MultiArtistPlaylistGenerator implements PlaylistGenerator {
 
         try {
             GeneratorPlaylist generatePlaylist =
-                    multiArtistPlaylistConstructorController.generatePlaylist(playlist.getArtists());
+                    multiArtistPlaylistConstructorController.generatePlaylist(getArtistIds(playlist));
 
             spotifyAPIController.wipePlaylist(playlist.getId());
 
