@@ -7,7 +7,6 @@ import org.apache.hc.core5.http.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import se.michaelthelin.spotify.model_objects.special.SnapshotResult;
 import se.michaelthelin.spotify.model_objects.specification.*;
 import se.michaelthelin.spotify.requests.data.albums.GetAlbumsTracksRequest;
 import se.michaelthelin.spotify.requests.data.artists.GetArtistRequest;
@@ -17,7 +16,6 @@ import se.michaelthelin.spotify.requests.data.playlists.AddItemsToPlaylistReques
 import se.michaelthelin.spotify.requests.data.playlists.GetPlaylistsItemsRequest;
 import se.michaelthelin.spotify.requests.data.playlists.RemoveItemsFromPlaylistRequest;
 import se.michaelthelin.spotify.requests.data.search.simplified.SearchArtistsRequest;
-import se.michaelthelin.spotify.requests.data.tracks.GetSeveralTracksRequest;
 import se.michaelthelin.spotify.requests.data.tracks.GetTrackRequest;
 
 import java.io.IOException;
@@ -85,7 +83,7 @@ public class SpotifyAPIController {
                         .build();
                 Paging<PlaylistTrack> playlistTrackPaging = getPlaylistsItemsRequest.execute();
 
-                result.addAll(Arrays.stream(playlistTrackPaging.getItems()).toList());
+                result.addAll(Arrays.asList(playlistTrackPaging.getItems()));
 
                 allRequested = result.size() == playlistTrackPaging.getTotal();
             }
@@ -187,7 +185,7 @@ public class SpotifyAPIController {
                                 .build();
                 Paging<AlbumSimplified> albumSimplified = getArtistsAlbumsRequest.execute();
 
-                result.addAll(Arrays.stream(albumSimplified.getItems()).toList());
+                result.addAll(Arrays.asList(albumSimplified.getItems()));
 
                 allRequested = result.size() == albumSimplified.getTotal();
             }
@@ -213,7 +211,7 @@ public class SpotifyAPIController {
                                 .build();
                 Paging<TrackSimplified> trackSimplifiedPaging = getAlbumsTracksRequest.execute();
 
-                result.addAll(Arrays.stream(trackSimplifiedPaging.getItems()).toList());
+                result.addAll(Arrays.asList(trackSimplifiedPaging.getItems()));
 
                 allRequested = result.size() == trackSimplifiedPaging.getTotal();
             }

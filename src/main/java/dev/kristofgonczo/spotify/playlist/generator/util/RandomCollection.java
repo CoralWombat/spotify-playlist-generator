@@ -3,7 +3,9 @@ package dev.kristofgonczo.spotify.playlist.generator.util;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Random;
 
 public class RandomCollection<E> {
 
@@ -32,7 +34,7 @@ public class RandomCollection<E> {
     public RandomCollection<E> addAll(WeightedItem<E>[] items) {
         if (Arrays.stream(items).anyMatch(weightedItem -> weightedItem.getWeight() <= 0)) return this;
         Arrays.stream(items).forEach(weightedItem -> total += weightedItem.getWeight());
-        content.addAll(Arrays.stream(items).toList());
+        content.addAll(Arrays.asList(items));
         return this;
     }
 
