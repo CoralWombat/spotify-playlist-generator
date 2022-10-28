@@ -29,7 +29,7 @@ public interface PlaylistGenerator {
         }
     }
 
-    private String[] getArtistIdsByArtistNames(String[] artistNames) throws IOException {
+    private String[] getArtistIdsByArtistNames(String[] artistNames) {
         Map<String, String> dictionary =
                 new Gson().fromJson(new InputStreamReader(getClass().getClassLoader()
                                 .getResourceAsStream("artist_id_dictionary.json")),
@@ -39,7 +39,7 @@ public interface PlaylistGenerator {
 
         for (String artistName : artistNames) {
             String artistId = dictionary.getOrDefault(artistName, "missing");
-            if (artistId != null) {
+            if (artistId != null && !artistId.equals("NotOnSpotify")) {
                 if (artistId.equals("missing")) {
                     System.out.println("Artist is missing from dictionary file: " + artistName);
                 } else {
